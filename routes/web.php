@@ -3,6 +3,7 @@
 use App\Http\Controllers\IpController;
 use App\Http\Controllers\DeadlinController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 /*
@@ -30,19 +31,28 @@ Route::get('/test', function(){
 
 
 
- Route::get('/addIP', [IpController::class, 'getListofIp']); 
+ Route::get('/addIP', [IpController::class, 'getListofIp'])->name('dashboard'); 
  Route::get('/viewdeadline', [DeadlinController::class, 'goToDeadlinePage']); 
 
 //  Route::post("ips/submitip", [IpController::class, 'addIP'])->name('ip.add');
  Route::post("ips/submit", 'IpController@addIP');
  Route::post("ips/search_word", 'IpController@searchInIpdata');
+ Route::post("ips/checkduplicateregistry", 'IpController@checkRegistry');
  Route::post("home/search_word", 'IndexController@searchInIpdata');
  Route::post("home/filedvsapproved", 'IndexController@countFiledAndApproved');
  Route::post("home/iptrends", 'IndexController@getIpTypesCounts');
  Route::post("ips/search_iptype", 'IpController@selectIpByType');
  Route::post("ips/set_notifs", 'IpController@selectDateFiled');
+ Route::post("login", 'IndexController@setCookieForLogin');
+ Route::post("setLoginSessions", 'IndexController@getCookie');
+ Route::post("home/getUsersTest", 'IndexController@getUserToDb2');
 
- 
+ Route::get('/loginview', function(){
+    return view('/');
+ });
+
+ Route::get('/logout', 'IndexController@getLogout');
+
  Route::post("deadline/getlist", 'DeadlinController@getlistofDeadline');
 
 //  Route::post('home/todashboard', function (Request $request) {

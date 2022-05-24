@@ -49,17 +49,21 @@
 
             /* for scrollbar design */
             ::-webkit-scrollbar {
-                width: 5px;
+                width:10px;
+                height:10px;
             }
 
             ::-webkit-scrollbar-track {
                 -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
                 border-radius: 10px;
+               background:white;
             }
 
             ::-webkit-scrollbar-thumb {
                 border-radius: 10px;
                 -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+               background:#0892fd;
+               
             }
 
 
@@ -82,7 +86,7 @@
                 background:#0002;
             }
             #header-pop-up-box{
-                display:none; position:absolute;  top:55px; left:-180px; width:300px; 
+                display:none; position:absolute;  top:45px; left:-180px; width:300px; 
                 background:rgb(255, 255, 255); box-shadow:2px 2px 5px #0006; border-radius:0 0 .5rem .5rem; text-align: left;
             }
 
@@ -185,18 +189,18 @@
                         <div id="header-pop-up-box-profile">
                             <div class="p-2"><a href="/addIP" >Dashboard <span><i class="fa-brands fa-searchengin"></i></span> </a></div>
                             <div class="p-2"><a href="/" >Account <span><i class="fas fa-user-alt"></i></span> </a></div>
-                            <div class="p-2"><a href="/" >Logout <span><i class="fas fa-sign-out"></i></span> </a></div>
+                            <div class="p-2"><a href="/logout" >Logout <span><i class="fas fa-sign-out"></i></span> </a></div>
                         </div>
                     </div>
                     <div class="col p-2" id="notif_bell" style="position:relative;">
-                        <a>Notifs
+                        <a>
                             <i class="fa-lg fa-solid fa-bell " ></i>
                             <span id="notif_circle" style="background:rgb(173, 17, 17); color:rgb(255, 255, 255);  
                             border-radius:50%; height:15px; width:15px; position:absolute; top:0; left:100px; font-size:10px; font-weight:lighter">999</span>
                             <div id="header-pop-up-box" style="color:rgb(39, 26, 2); height:400px; overflow:auto">
                                 <div style="position:sticky; top:0; background:white; display:flex; justify-content: space-between; font-size:12px; padding:0 5px;">
                                     <label class="pl-2">Notifications</label>
-                                    <label class=" text-primary pr-2"><a href="http://127.0.0.1:8000/viewdeadline">View all</a></label>
+                                    <label class=" text-primary pr-2"><a href="/viewdeadline">View all</a></label>
                                 </div>
                                 
                                 <div  id='notif_list_box' style='width:100%; font-size:10px; font-weight:lighter'>
@@ -279,6 +283,5 @@
                 }
             });
     }
-  
   
   </script>

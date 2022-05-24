@@ -1,4 +1,10 @@
 @include('header')
+
+
+{{-- @if(session()->get('login_ips_enabled') != 1)
+    @include("login")
+@else  --}}
+
 @include('home')
 @php $records = [1,2,3];
 @endphp
@@ -43,34 +49,6 @@
     </style>
 
 @section("title", "IP - Index")
-
-
-{{-- 
-
-
-@if (count($records) == 1)
-    I have one record!
-@elseif (count($records) > 1)
-    I have multiple records!
-@else
-    I don't have any records!
-@endif
-
-@foreach($ips as $ip)
-    <li> {{$ip->name}} </li>
-@endforeach
-
-
-@component('alert', ["name"=>"IP System", "date"=>date("Y-m-d H:i:s")])
-kipas dpoiash do;asihn
-    @slot('title')
-       This is the title
-    @endslot
- dasdash dwpiahe dwao;ihd wa
-@endcomponent --}}
-
-
-
 <div id="standard-footer" style="background-image:linear-gradient(to bottom,#55b6ff, #0892fd);">
     <div class="row ">
         <div class="col-lg-4 mt-5">
@@ -131,3 +109,4 @@ kipas dpoiash do;asihn
         </div>
     </div>
 </div>
+{{-- @endif --}}

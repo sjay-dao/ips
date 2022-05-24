@@ -16,18 +16,20 @@ class CreateTmDauTable extends Migration
     {
         Schema::create('tm_dau', function (Blueprint $table) {
             $table->id();
-            $table->string('reg_no')->default('none');;
-            $table->string('status_3rd_dou')->default('none');;
-            $table->string('regno_3rd_dou')->default('none');;
-            $table->string('status_5th_dou')->default('none');;
-            $table->string('regno_5th_dou')->default('none');;
-            $table->string('goods_n_services')->default('none');;
-            $table->string('status_renewal')->default('none');
-            $table->date('first_use')->default(DB::raw('CURRENT_TIMESTAMP'));;
+            $table->string('reg_no')->default('none');
+            $table->date('date_3rd_dou')->default(null)->nullable()->change();
+            $table->string('status_3rd_dou')->default('none')->nullable()->change();;
+            $table->string('regno_3rd_dou')->default('none')->nullable()->change();;
+            $table->string('date_5th_dou')->default('none')->nullable()->change();;
+            $table->string('status_5th_dou')->default('none')->nullable()->change();;
+            $table->string('regno_5th_dou')->default('none')->nullable()->change();;
+            $table->string('goods_n_services')->default('none')->nullable()->change();;
+            $table->string('status_renewal')->default('none')->nullable()->change();;
+            $table->date('first_use')->default(null)->nullable()->change();;
             
-            $table->string('outlet')->default('none');;
-            $table->string('outlet_address')->default('none');;
-            $table->string('pic_n_lbl')->default('none');;
+            $table->string('outlet')->default('none')->nullable()->change();;
+            $table->string('outlet_address')->default('none')->nullable()->change();;
+            $table->string('pic_n_lbl')->default('none')->nullable()->change();;
         });
     }
 

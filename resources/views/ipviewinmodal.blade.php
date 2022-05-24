@@ -2,6 +2,12 @@
 #ipview_body label, #ipview_body textarea{
     font-size:13px;
 }
+
+.modal-text{
+    display:none;
+}
+
+
 </style>
 <button type="button" id= "btn_open_viewip" class="btn-sm btn-success btn-sm d-none" data-toggle="modal" data-target=".bd-example-modal-xl" >Open view ip</button>
 <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -21,48 +27,58 @@
                     
                     <div  class="row mt-3">
                         <label class="col-lg-4 font-weight-bold">Name:</label>
-                        <label class="col-lg-8" id="view_lbl_name">First 1000 days-Heart Symbol and Growth Chart</label>
+                        <label class="col-lg-8 modal-label" id="view_lbl_name"></label>
+                        <input class="col-lg-7 modal-text" id="modal_name" type="text" / >
                     </div>
                 </div>
                 
                 <div class='col-lg-4' style="">
                     <div  class="row">
                         <label class="col-lg-5 font-weight-bold">Document code:</label>
-                        <label class="col-lg-7" id="view_lbl_doc_code">FNRI-IPD-TM-000006</label>
+                        <label class="col-lg-7 modal-label" id="view_lbl_doc_code">FNRI-IPD-TM-000006</label>
+                        <input class="col-lg-7 modal-text" id="modal_doc_code" type="text" / >
                     </div>
                     <div  class="row">
                         <label class="col-lg-5 font-weight-bold">Date Filed:</label>
-                        <label class="col-lg-7" id="view_lbl_date_filed">2014-03-10</label>
+                        <label class="col-lg-7 modal-label" id="view_lbl_date_filed">2014-03-10</label>
+                        <input class="col-lg-7 modal-text" id="modal_date_filed" type="text" / >
                     </div>
                     <div  class="row">
                         <label class="col-lg-5 font-weight-bold">Registration No.:</label>
-                        <label class="col-lg-7" id="view_lbl_reg_no">4/2014/00002945</label>
+                        <label class="col-lg-7 modal-label" id="view_lbl_reg_no">4/2014/00002945</label>
+                        <input class="col-lg-7 modal-text" id="modal_reg_no" type="text" / >
                     </div>
                     <div  class="row">
                         <label class="col-lg-5 font-weight-bold">Authors/Inventors:</label>
-                        <label class="col-lg-7" id="view_lbl_aut_n_inv">Marie T. Bugas; Julieta Dorado</label>
+                        <label class="col-lg-7 modal-label" id="view_lbl_aut_n_inv">Marie T. Bugas; Julieta Dorado</label>
+                        <input class="col-lg-7 modal-text" id="modal_aut_n_inv" type="text" / >
                     </div>
                     <div  class="row">
                         <label class="col-lg-5 font-weight-bold">Status:</label>
-                        <label class="col-lg-7" id="view_lbl_status" >Approved</label>
+                        <label class="col-lg-7 modal-label" id="view_lbl_status" >Approved</label>
+                        <input class="col-lg-7 modal-text" id="modal_status" type="text" / >
                     </div>
                     <div  class="row">
                         <label class="col-lg-5 font-weight-bold">Date Approved:</label>
-                        <label class="col-lg-7" id="view_lbl_date_approved" >2014-07-10</label>
+                        <label class="col-lg-7 modal-label" id="view_lbl_date_approved" >2014-07-10</label>
+                        <input class="col-lg-7 modal-text" id="modal_date_approved" type="text" / >
                     </div>
 
                     <div id="for-trademark-dau">
                         <div  class="row mt-5">
                             <label class="col-lg-5 font-weight-bold">Used for the ff. classes of goods/services:</label>
-                            <label class="col-lg-7" id="view_lbl_use_for_gns" >sdas</label>
+                            <label class="col-lg-7 modal-label" id="view_lbl_use_for_gns" >sdas</label>
+                            <input class="col-lg-7 modal-text" id="modal_use_for_gns" type="text" / >
                         </div>
                         <div  class="row">
                             <label class="col-lg-5 font-weight-bold">First Used On</label>
-                            <label class="col-lg-7" id="view_lbl_first_use" >2014-07-10</label>
+                            <label class="col-lg-7 modal-label" id="view_lbl_first_use" >2014-07-10</label>
+                            <input class="col-lg-7 modal-text" id="modal_first_use" type="text" / >
                         </div>
                         <div  class="row">
                             <label class="col-lg-5 font-weight-bold">5 Labels or Pictures</label>
-                            <label class="col-lg-7" id="view_lbl_5lbl_or_pic"></label>
+                            <label class="col-lg-7 modal-label" id="view_lbl_5lbl_or_pic"></label>
+                            <input class="col-lg-7 modal-text" id="modal_5lbl_or_pic" type="text" / >
                         </div>
                         <div class="mt-3" style="width:100%;  border:1px solid rgb(171, 170, 170); display:flex; text-align:left;  flex-direction: row; flex-wrap: wrap;" >
                             <div id='outlet_box' class='w-100' style="max-height:110px; overflow:auto;">
@@ -70,13 +86,15 @@
                                     <div class='col-lg-12'>		
                                         <div class='row'>
                                             <label class='col-sm-5' for=''>Name of Outlet</label>
-                                            <label class="col-lg-7">2014-07-10</label>
+                                            <label class="col-lg-7 modal-label"></label>
+                                            <input class='col-lg-7 modal-text' id='modal_' type='text' / >
                                         </div>
                                     </div>
                                     <div class='col-lg-12'>		
                                         <div class='row'>
                                             <label class='col-sm-5' for=''>Address:</label>
-                                            <label class="col-lg-7"></label>
+                                            <label class="col-lg-7 modal-label"></label>
+                                            <input class='col-lg-7 modal-text' id='modal_' type='text' / >
                                         </div>
                                     </div>
                                 </div>
@@ -90,24 +108,73 @@
                 <div class='col-lg-4'style="">
                     <div  class="row mb-2">
                         <label class="col-lg-5 font-weight-bold">Project Title:</label>
-                        <label class="col-lg-7" id="view_lbl_proj_title">Lost</label>
+                        <label class="col-lg-7 modal-label" id="view_lbl_proj_title">Lost</label>
+                        <input class='col-lg-7 modal-text' id='modal_proj_title' type='text' / >
                     </div>
                     <div id="view-ip-duration-content-box" style="max-height:300px; overflow:auto">
                         
                     </div>
                     <div  class="row mt-2">
-                        <label class="col-lg-5 font-weight-bold">Gross Amount of Income Generated, if applicable:</label>
-                        <label class="col-lg-7" id="view_lbl_gross_amount">N/A</label>
+                        <label class="col-lg-5 font-weight-bold">Gross Income:</label>
+                        <label class="col-lg-7 modal-label" id="view_lbl_gross_amount">N/A</label>
+                        <input class='col-lg-7 modal-text' id='modal_gross_amount' type='text' / >
                     </div>
 
                     <div  class="row mt-2">
                         <label class="col-lg-5 font-weight-bold">PRAISE Award:</label>
-                        <label class="col-lg-7" id="view_lbl_praise">2018 PRAISE</label>
+                        <label class="col-lg-7 modal-label" id="view_lbl_praise">2018 PRAISE</label>
+                        <input class='col-lg-7 modal-text' id='modal_praise' type='text' / >
                     </div>
 
                     <div  class="row mt-2">
                         <label class="col-lg-5 font-weight-bold">NAST Award:</label>
-                        <label class="col-lg-7" id="view_lbl_nast" >N/A</label>
+                        <label class="col-lg-7 modal-label" id="view_lbl_nast" >N/A</label>
+                        <input class='col-lg-7 modal-text' id='modal_nast' type='text' / >
+                    </div>
+
+                    <h5><b>3RD Declaration of Actual Use</b></h5>
+                    <div class="col-lg-12">		
+                        <div class="row">
+                            <label class="col-sm-5" for="">Register No</label>
+                            <label class="col-lg-7 modal-label" id="view_lbl_3rd_regno"></label>
+                            <input class="col-sm-7 modal-text" type="text" id="modal_3rd_regno"/>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">		
+                        <div class="row">
+                            <label class="col-sm-5" for="">Status</label>
+                            <label class="col-lg-7 modal-label" id="view_lbl_3rd_status"></label>
+                            <input class="col-sm-7 modal-text" type="text" id="modal_3rd_status"/>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">		
+                        <div class="row">
+                            <label class="col-sm-5" for="">Date</label>
+                            <label class="col-lg-7 modal-label" id="view_lbl_3rd_date"></label>
+                            <input class="col-sm-7 modal-text" type="date" id="modal_3rd_date"/>
+                        </div>
+                    </div>
+                    <h5><b>5TH Declaration of Actual Use</b></h5>
+                    <div class="col-lg-12">		
+                        <div class="row">
+                            <label class="col-sm-5" for="">Register No</label>
+                            <label class="col-lg-7 modal-label" id="view_lbl_5th_regno"></label>
+                            <input class="col-sm-7 modal-text" type="text" id="modal_5th_reg_no"/>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">		
+                        <div class="row">
+                            <label class="col-sm-5" for="">Status</label>
+                            <label class="col-lg-7 modal-label" id="view_lbl_5th_status"></label>
+                            <input class="col-sm-7 modal-text" type="text" id="modal_5th_status"/>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">		
+                        <div class="row">
+                            <label class="col-sm-5" for="">Date</label>
+                            <label class="col-lg-7 modal-label" id="view_lbl_5th_date"></label>
+                            <input class="col-sm-7 modal-text" type="date" id="modal_5th_date"/>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -148,14 +215,24 @@
     }
     // fillIpData(data);
 
+    $("#btn_open_viewip").click(function(e, json, val){
+        if(val == 'edit'){
+            $(".modal-label").hide();
+            $(".modal-text").show();
+        }else{
+            $(".modal-label").show();
+            $(".modal-text").hide();
+        }
+    });
+
     function fillIpData(row){
-        
+        // console.log(row);
         $("#view_lbl_name").text(row.name);
         $("#view_lbl_doc_code").text(row.doc_code);
         $("#view_lbl_date_filed").text(row.date_filed);
         $("#view_lbl_reg_no").text(row.reg_no);
         $("#view_lbl_aut_n_inv").text(row.author_r_inventor);
-        $("view_lbl_status").text(row.status);
+        $("#view_lbl_status").text(row.status);
         $("#view_lbl_date_approved").text(row.date_approved);
         $("#view_lbl_use_for_gns").text(row.goods_n_services);
         $("#view_lbl_first_use").text(row.first_use);
@@ -164,6 +241,34 @@
         $("#view_lbl_gross_amount").text(row.income_gross);
         $("#view_lbl_praise").text(row.praise_award);
         $("#view_lbl_nast").text(row.nast_award);
+        $("#view_lbl_3rd_regno").text(row.regno_3rd_dou);
+        $("#view_lbl_3rd_date").text(row.date_3rd_dou + " ");
+        $("#view_lbl_3rd_status").text(row.status_3rd_dou + " ");
+        $("#view_lbl_5th_regno").text(row.regno_5th_dou);
+        $("#view_lbl_5th_date").text(row.date_5th_dou+ " ");
+        $("#view_lbl_5th_status").text(row.status_5th_dou);
+
+        //for label
+        $("#modal_name").val(row.name);
+        $("#modal_doc_code").val(row.doc_code + "dkas dw ");
+        $("#modal_date_filed").val(row.date_filed);
+        $("#modal_reg_no").val(row.reg_no);
+        $("#modal_aut_n_inv").val(row.author_r_inventor);
+        $("#modal_status").val(row.status);
+        $("#modal_date_approved").val(row.date_approved);
+        $("#modal_use_for_gns").val(row.goods_n_services);
+        $("#modal_first_use").val(row.first_use);
+        $("#modal_5lbl_or_pic").val(row.pic_n_lbl);
+        $("#modal_proj_title").val(row.project_title);
+        $("#modal_gross_amount").val(row.income_gross);
+        $("#modal_praise").val(row.praise_award);
+        $("#modal_nast").val(row.nast_award);
+        $("#modal_3rd_regno").val(row.regno_3rd_dou);
+        $("#modal_3rd_date").val(row.date_3rd_dou + " ");
+        $("#modal_3rd_status").val(row.status_3rd_dou + " ");
+        $("#modal_5th_regno").val(row.regno_5th_dou);
+        $("#modal_5th_date").val(row.date_5th_dou+ " ");
+        $("#modal_5th_status").val(row.status_5th_dou);
 
         let outlets = row.outlet.split("&");
         let outlet_address = row.outlet_address.split("&");

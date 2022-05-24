@@ -34,12 +34,13 @@
             </div>
             <div class="row form-group">
                 <label class="col-sm-6" for="">Document Code</label>
-                <input class="col-sm-5 form-control" type="text" id="doc_code"/>
+                <input class="col-sm-5" type="text" id="doc_code"/>
             </div>
 
             <div class="row form-group">
                 <label class="col-sm-6" for="">Registration No</label>
-                <input class="col-sm-5 form-control" type="text" id="reg_no"/>
+                <input class="col-sm-5 form-control" type="text" id="reg_no" onchange="checkDuplicateRegistration()"/>
+                <label class="offset-md-6 col-sm-5" id="dup_label_warn" style="color:red; display:none">Registration No. is already in the database.</label>
             </div>
 
             <div class="row form-group">
@@ -54,13 +55,17 @@
 
             <div class="row form-group">
                 <label class="col-sm-6" for="">Status</label>
-                <input class="col-sm-5 form-control" type="text" id="status"/>
+                <input class="col-sm-5 form-control" type="text" id="status" onchange="checkStatusToDisableOtherInputs()" />
                 <textarea class='offset-sm-6 col-sm-5' name='' id='status_comment' rows='2' class='' style='border:1px solid #0003' placeholder='Additional info/comments' ></textarea>
+                {{-- <div class="offset-sm-6 col-sm-5" style="display:flex; ">
+                    <input type="checkbox" class="" id="lbl_forfeit" name="forfeit_lbls" value="Forfeited">
+                    <label class="" for="forfeit_lbl">Check if forfeited/Withdrawn</label>
+                </div> --}}
             </div>
 
             <div class="row form-group">
                 <label class="col-sm-6" for="">Date Approved</label>
-                <input class="col-sm-5 form-control" type="date" id="date_approved"/>
+                <input class="col-sm-5 " type="date" id="date_approved"/>
             </div>
 
             <div class="row form-group">
@@ -78,21 +83,22 @@
                 <div id="project_detail_extension_box" >
                     <div class='row project-info-set mb-3 p-2 ' style='box-shadow:1px 1px 3px #000a; width:95%; margin:auto'>
                         <button type=button class='offset-sm-11 col-sm-1 project-info-set-close' onclick='' style='background:transparent; color:red; border:none'>O</button>
-                        <div class='col-lg-12'>
+                        <div class='col-lg-12 mb-1'>
                             <div class='row'>
                                 <label class='col-sm-4' for=''>Project Duration</label>
-                                <input class='col-sm-4 form-control duration_from' type='date' id=''/>
-                                <input class='col-sm-4 form-control duration_to' type='date' id=''/>
-                                <textarea class='col-sm-12 duration_comment' name='' id='' rows='2' class='' style='border:1px solid #0003' placeholder='Additional info/comments to describe Project Duration(Optional)' ></textarea>
+                                <input class='col-sm-4 duration_from' type='date' id=''/>
+                                <input class='col-sm-4 duration_to' type='date' id=''/>
+                                <textarea class='offset-sm-6 col-sm-6 duration_comment' name='' id='' rows='2' class='' style='border:1px solid #0003' placeholder='Additional info/comments to describe Project Duration(Optional)' ></textarea>
                             </div>
                         </div>
-                        <div class='col-lg-12'>
-                            <div class='row'>
+                        <div class='col-lg-12 mb-1'>
+                            <div class='row '>
                                  <label class='col-sm-5' for=''>Project Cost</label>
                                  <input class='col-sm-7 form-control project_cost num-n-dec' type='text' id=''/>
+                                 <textarea class='offset-sm-6 col-sm-6 cost_comment ' name='' id='' rows='2' class='' style='border:1px solid #0003;' placeholder='Additional info/comments to describe Project Cost(Optional)' ></textarea>
                             </div>
                         </div>
-                        <div class='col-lg-12'>
+                        <div class='col-lg-12 '>
                             <div class='row'>
                                  <label class='col-sm-5' for=''>Funding Source</label>
                                  <input class='col-sm-7 form-control funding_source' type='text' id=''/>
@@ -154,12 +160,60 @@
                     </div>
                     <button type="button" class="btn-sm btn-success mb-3" id="btn_add_outlet" style=" width:90%; margin:auto"> Add more Outlet</button>
                 </div>
+
+                <div class='w-100 mt-3'>
+                    <h3>3RD Declaration of Actual Use</h3>
+                    <div class="col-lg-12">		
+                        <div class="row">
+                            <label class="col-sm-6" for="">Register No</label>
+                            <input class="col-sm-5" type="text" id="3rd_regno"/>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">		
+                        <div class="row">
+                            <label class="col-sm-6" for="">Status</label>
+                            <input class="col-sm-5" type="text" id="3rd_status"/>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">		
+                        <div class="row">
+                            <label class="col-sm-6" for="">Date</label>
+                            <input class="col-sm-5" type="date" id="3rd_date"/>
+                        </div>
+                    </div>
+                    <h3>5TH Declaration of Actual Use</h3>
+                    <div class="col-lg-12">		
+                        <div class="row">
+                            <label class="col-sm-6" for="">Register No</label>
+                            <input class="col-sm-5" type="text" id="5th_reg_no"/>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">		
+                        <div class="row">
+                            <label class="col-sm-6" for="">Status</label>
+                            <input class="col-sm-5" type="text" id="5th_status"/>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">		
+                        <div class="row">
+                            <label class="col-sm-6" for="">Date</label>
+                            <input class="col-sm-5" type="text" id="5th_date"/>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">		
+                        <div class="row">
+                            <label class="col-sm-6" for="">Renewal</label>
+                            <input class="col-sm-5" type="text" id="renewal"/>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="row form-group">
                 <button id="btn_submitIP" type="button" class="btn-lg btn-success col-md-3 offset-md-3" data-toggle="modal" >Add</button>
                 <button id = "tbn_exit_modal_ipadd" type="button" class="btn-lg btn-danger col-md-3" data-toggle="modal" data-target=".bd-example-modal-lg">Exit</button>
-                <button id = "view_values" type="button" class="btn-lg btn-danger col-md-3 d-" >Exit</button>
+                {{-- <button id = "view_values" type="button" class="btn-lg btn-danger col-md-3 d-" >Exit</button> --}}
             </div>
         </form>
     </div>
@@ -179,12 +233,12 @@
     $("#btn_submitIP").click(function(){
         let type_id = ($("#type_id").val() == '')?'-1':$("#type_id").val();
         let doc_code = ($("#doc_code").val() == '')?"none":$("#doc_code").val();
-        let date_filed = ($("#date_filed").val() == '')?"none":$("#date_filed").val();
+        let date_filed = ($("#date_filed").val() == '')?null:$("#date_filed").val();
         let name = ($("#name").val() == '')?"none":$("#name").val();
         let reg_no = ($("#reg_no").val() == '')?"none":$("#reg_no").val();
         let author_r_inventor = ($("#author_r_inventor").val() == '')?"none":$("#author_r_inventor").val();
         let status = ($("#status").val() == '')?"none":$("#status").val() + "&" + $("#status_comment").val();
-        let date_approved = ($("#date_approved").val() == '')?"none":$("#date_approved").val();
+        let date_approved = ($("#date_approved").val() == '')?null:$("#date_approved").val();
         let project_title = ($("#project_title").val() == '')?"none":$("#project_title").val();
         let nast_award = ($("#is_nast").val() == '')?"none":$("#is_nast").val();
         let praise_award = ($("#is_praise").val() == '')?"none":$("#is_praise").val();
@@ -199,7 +253,13 @@
         // let outlet = ($("#outlet").val() == '')?"none":$("#outlet").val();
         // let outlet_address = ($("#outlet_address").val() == '')?"none":$("#outlet_address").val();
         let pic_n_lbl = ($("#pic_n_lbl").val() == '')?"none":$("#pic_n_lbl").val();
-
+        let date_3rd_dou = ($("#3rd_date").val() == '')?null:$("#3rd_date").val();
+        let regno_3rd_dou = ($("#3rd_regno").val() == '')?"none":$("#3rd_regno").val();
+        let status_3rd_dou = ($("#3rd_status").val() == '')?"none":$("#3rd_status").val();
+        let date_5th_dou = ($("#5th_date").val() == '')?null:$("#5th_date").val();
+        let regno_5th_dou = ($("#5th_regno").val() == '')?"none":$("#5th_regno").val();
+        let status_5th_dou = ($("#5th_status").val() == '')?"none":$("#5th_status").val();
+        let status_renewal = ($("#renewal").val() == '')?"none":$("#renewal").val();
 
         console.log(type_id + name + doc_code);
         //get all duration from
@@ -211,13 +271,13 @@
         // get all project_cost
         let  project_cost = ($( ".project_cost" ).first().val() == '')?"none":'';
         $( ".project_cost" ).each(function( i ) {
-            project_cost += this.value + "&" ;
+            project_cost += this.value + "&" + $(".cost_comment")[i].value + "^" ;
         });
         project_cost = project_cost.slice(0,-1);
         //get all funding_source
         let funding_source = ($( ".funding_source" ).first().val() == '')?"none":'';
         $( ".funding_source" ).each(function( i ) {
-            funding_source += this.value + "&" ;
+            funding_source += this.value + "^" ;
         });
             funding_source = funding_source.slice(0,-1);
         
@@ -238,7 +298,7 @@
         $( ".form-control" ).each(function( index ) {
             console.log( index + ": " + $( this ).text() );
             $( this ).css('background', 'none');
-            if(this.value == ''){
+            if(this.value == '' && !$(this).prop('disabled')){
                 console.log($( this ).prop('id') + " - missing field");
                 $( this ).css('background', '#faaa');
                 is_valid = false;
@@ -271,6 +331,13 @@
                         "pic_n_lbl":pic_n_lbl,
                         "outlet":outlet,
                         "outlet_address":outlet_address,
+                        "date_3rd_dou":date_3rd_dou,
+                        "regno_3rd_dou":regno_3rd_dou,
+                        "status_3rd_dou":status_3rd_dou,
+                        "date_5th_dou":date_5th_dou,
+                        "regno_5th_dou":regno_5th_dou,
+                        "status_5th_dou":status_5th_dou,
+                        "status_renewal":status_renewal,
                         // _token: "{{ csrf_token() }}",
                     },
                     dataType: "JSON",
@@ -296,18 +363,19 @@
         $("#project_detail_extension_box").append(
         "<div class='row project-info-set mb-3 p-2' style='box-shadow:1px 1px 3px #000a; width:95%; margin:auto' >"+
                         "<button type=button class='offset-sm-11 col-sm-1' onclick='deleteExtensionForm(this)' style='background:transparent; color:red; border:none'>X</button>"+
-                        "<div class='col-lg-12'>"+
+                        "<div class='col-lg-12 m-1'>"+
                             "<div class='row'>"+
                                 "<label class='col-sm-4' for=''>Project Duration</label>"+
-                                "<input class='col-sm-4 form-control duration_from' type='date' />"+
-                                "<input class='col-sm-4 form-control duration_to' type='date' id=''/>"+
-                                "<textarea class='col-sm-12 duration_comment' name='' id='' rows='2' style='border:1px solid #0003' class='' placeholder='Additional info/comments to describe Project Duration(Optional)' ></textarea>"+
+                                "<input class='col-sm-4 duration_from' type='date' />"+
+                                "<input class='col-sm-4 duration_to' type='date' id=''/>"+
+                                "<textarea class='offset-sm-6 col-sm-6 duration_comment' name='' id='' rows='2' style='border:1px solid #0003' class='' placeholder='Additional info/comments to describe Project Duration(Optional)' ></textarea>"+
                             "</div>"+
                         "</div>"+
-                        "<div class='col-lg-12'>"+
+                        "<div class='col-lg-12 m-1'>"+
                             "<div class='row'>"+
                                 "<label class='col-sm-5' for=''>Project Cost</label>"+
                                 "<input class='col-sm-7 form-control project_cost num-n-dec' type='text' />"+
+                                "<textarea class='offset-sm-6 col-sm-6 cost_comment ' name='' id='' rows='2' class='' style='border:1px solid #0003;' placeholder='Additional info/comments to describe Project Cost(Optional)' ></textarea>"+
                             "</div>"+
                         "</div>"+
                         "<div class='col-lg-12'>"+
@@ -353,13 +421,13 @@
          // get all project_cost
          let  project_string = "";
         $( ".project_cost" ).each(function( i ) {
-            project_string += this.value + "&" ;
+            project_string += this.value + "&"  + $(".cost_comment")[i].value + "^";
         });
 
         //get all funding_source
         let funding_string = "";
         $( ".funding_source" ).each(function( i ) {
-            funding_string += this.value + "&" ;
+            funding_string += this.value + "^";
         });
 
         //get all outlet
@@ -383,7 +451,20 @@
 
     });
 
-   
+   function checkStatusToDisableOtherInputs(){
+       if($("#status").val().toLowerCase() == "forfeited" || $("#status").val().toLowerCase() == "withdrawn"){
+        $("#date_approved").prop("disabled", true);
+        $("#is_nast").prop("disabled", true);
+        $("#is_praise").prop("disabled", true);
+        
+       }else{
+        $("#date_approved").prop("disabled", false);
+        $("#is_nast").prop("disabled", false);
+        $("#is_praise").prop("disabled", false);
+       }
+        
+   }
+
    function deleteExtensionForm(this_object){
         let parent = $(this_object).parent();
         $(parent).remove();
@@ -393,6 +474,33 @@
         let parent = $(this_object).parent();
         $(parent).remove();
    }
+
+   function checkDuplicateRegistration(){
+        let reg_no = $("#reg_no").val();
+        $.ajax({
+                    url : "ips/checkduplicateregistry",
+                    method:"POST",
+                    data:{
+                        "reg_no":reg_no,
+                    },
+                    dataType: "JSON",
+                    success: function (data){
+                        let is_dup = parseInt(JSON.stringify(data));
+                        console.log(JSON.stringify(data) + " - hi duplicate");
+                        if(is_dup != 0){//if duplicate registration no.
+                            $("#dup_label_warn").css('display', 'block');
+                            $( "#btn_submitIP" ).prop('disabled', true);
+                        }else{
+                            $("#dup_label_warn").css('display', 'none');
+                            $( "#btn_submitIP" ).prop('disabled', false);
+                        }
+                    },
+                    error: function (data, textStatus, errorThrown) {
+                        console.log(data.responseText);
+                    },
+        });
+   }
+
 
    //for only numbers and decimals allowed
    $(".num-n-dec").keydown(function (event) {

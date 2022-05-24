@@ -5,6 +5,7 @@
    }
    
    #home_front_first{
+    /* margin-top:10vh; */
     width:100%;   background-image:linear-gradient(to bottom,#0892fd, #ffffff, #0892fd); text-align:center; display:flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -13,28 +14,21 @@
    }
 
    #home_about{
-    width:70%;  font-size:17px; margin:auto; 
+    width:70vw;  font-size:17px; margin:auto;
     /* border:1px solid red; */
    }
    #home_about #home_paragraphs{
-    height:100%;
+    height: 100vh;
     display:flex; 
     flex-wrap: wrap;
     align-content: center;
     justify-content: center;
    }
 
-   #search_label, #front_ip_label{
-        margin:auto;  font-size:40px; font-weight:; font-family:Arial Black; 
-        color:rgb(15, 25, 56); text-shadow:3px 2px 5px rgb(255, 255, 255); 
-        padding-bottom:10px
-   }
+  
 
    #main_header{
        box-shadow: 2px 2px 10px rgb(97, 97, 97);
-   }
-   #search_box{
-        height:50px;
    }
 
    #home_logo{
@@ -47,7 +41,161 @@
         background-size: 100% auto;
     }
     
-    #search_param_box button{
+   
+
+     /* for checklist and forms */
+     #icon_pum, #icon_cr, #icon_tm{
+        width:120px; text-align:center; margin-right:50px; padding-top:30px;
+    }
+
+    .downloadable_cnf{
+        display:flex; align-items: center; border:2px ridge white; 
+        width:120px; height:170px; border-radius:1rem; text-align:center; 
+        background:white; font-size:13px; color:black; cursor:pointer;
+        
+    }
+
+    .downloadable_cnf label{
+        padding:5px; cursor:pointer; 
+    }
+
+    .downloadable_cnf:hover{
+        color:#0892fd; width:130px; height:175px;
+    }
+
+   @media only screen and (max-width: 930px) {
+        #search_label{
+            font-size:20px;
+            display:none;
+        }
+
+        #home_search_box{
+                    padding:15px 0;
+                    top:15px; 
+        }
+
+        #home_logo{
+            height:100px
+        }
+
+        #home_about{
+            font-size:13px;  width:90%;
+        }
+
+        #icon_pum{
+            margin:0;
+        }
+   }
+
+    @media only screen and (max-width: 500px) {
+                #label_search{
+                    display:none;
+                }
+                #home_search_box{
+                    /* padding:10px 0; */
+                    top:45px; 
+                }
+
+                #search_label{
+                    font-size:13px;
+                    margin-top:0;
+                }
+
+                #search_box{
+                    height:30px;
+                }
+
+                #home_logo{
+                    height:50px
+                }
+
+                #cnf_pum_box{
+                    flex-direction: column;
+                    align-items: center;
+                    align-content: center;
+                    
+                }
+
+             
+    }
+
+</style>
+
+
+<style>
+    /* for trend box */
+    #ip_trends_box{
+        width:100%;display:flex; padding:100px 0 100px 0; margin:70px 0 70px 0;
+        text-align:center; flex-wrap:wrap; flex-direction: row;
+        justify-content: center; background: #0a95ff; 
+    }
+
+    .ip_trends_box_contents:hover{
+        opacity:0.7;
+        transform: scale(1.1);
+    }
+
+    .ip_trends_box_contents{
+        height:170px; margin:10px; width:200px; border-radius:1rem; border:1px solid #aaa;
+        display:flex; justify-content: center; align-items: center; color:white; cursor:pointer;
+    }
+    
+    @media only screen and (max-width: 500px) {
+        .ip_trends_box_contents{ 
+            height:128px; margin:5px; width:150px; 
+        }
+    }
+</style>
+
+<style>
+    /* for table */
+    table.dataTable thead .sorting:after,
+    table.dataTable thead .sorting:before,
+    table.dataTable thead .sorting_asc:after,
+    table.dataTable thead .sorting_asc:before,
+    table.dataTable thead .sorting_asc_disabled:after,
+    table.dataTable thead .sorting_asc_disabled:before,
+    table.dataTable thead .sorting_desc:after,
+    table.dataTable thead .sorting_desc:before,
+    table.dataTable thead .sorting_desc_disabled:after,
+    table.dataTable thead .sorting_desc_disabled:before {
+        bottom: .5em;
+    }
+    table th{
+    background:#2076b7;
+    font-size:12px;
+    color:white;
+    text-shadow:1px 1px 3px #000a;
+    /* text-align: center */
+    }
+    table td{
+        word-wrap: break-word;
+        font-size:10px;
+        max-width: 150px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    table thead{
+    position:sticky;
+    top:0px;
+    text-align:center;
+    }
+</style>
+
+<style> 
+    /*  for quick search box*/
+   #search_box{
+        height:50px;
+   }
+
+    #search_label, #front_ip_label{
+        margin:auto;  font-size:40px; font-weight:; font-family:Arial Black; 
+        color:rgb(15, 25, 56); text-shadow:3px 2px 5px rgb(255, 255, 255); 
+        padding-bottom:10px
+   }
+
+   #search_param_box button{
         border:none;
         background:transparent;
         background:rgb(192, 203, 208);
@@ -59,6 +207,9 @@
         width:100%; min-height:200px; display:flex;
         max-height:500px; overflow:auto;
         margin:0; font-size:12px; line-height:1;
+        flex-direction: row;
+        flex-wrap: wrap;
+        display:none;
     }
     
     .ip_result_contents{
@@ -90,109 +241,22 @@
         border:1px solid #000a */
     }
 
-     /* for checklist and forms */
-     #icon_pum, #icon_cr, #icon_tm{
-        width:120px; text-align:center; margin-right:50px; padding-top:30px;
+    .view-button{
+        border-radius:.5rem ;  background:#055da1;
+        border:1px solid #75c3ff; color:white;
     }
 
-    .downloadable_cnf{
-        display:flex; align-items: center; border:2px ridge white; 
-        width:120px; height:170px; border-radius:1rem; text-align:center; 
-        background:white; font-size:13px; color:black; cursor:pointer;
-        
+    .view-button-selected{
+         color:#055da1;
+         border:1px solid #181818; background:white;
     }
-
-    .downloadable_cnf label{
-        padding:5px; cursor:pointer; 
-    }
-
-    .downloadable_cnf:hover{
-        color:#0892fd; width:130px; height:175px;
-    }
-
-   @media only screen and (max-width: 930px) {
-        #search_label{
-            font-size:20px;
-        }
-
-        #home_search_box{
-                    padding:15px 0;
-                    top:5px; 
-        }
-
-        #home_logo{
-            height:100px
-        }
-
-        #home_about{
-            font-size:13px;  width:90%; 
-        }
-
-        #icon_pum{
-            margin:0;
-        }
-   }
-
-    @media only screen and (max-width: 500px) {
-                #label_search{
-                    display:none;
-                }
-                #home_search_box{
-                    /* padding:10px 0; */
-                    top:15px; 
-                }
-
-                #search_label{
-                    font-size:13px;
-                    margin-top:0;
-                }
-
-                #search_box{
-                    height:30px;
-                }
-
-                #home_logo{
-                    height:50px
-                }
-
-                #cnf_pum_box{
-                    flex-direction: column;
-                    align-items: center;
-                    align-content: center;
-                    
-                }
-
-             
-    }
-
-</style>
-
-
-{{-- @include("home.tabngraph") --}}
-<style>
-    #ip_trends_box{
-        width:100%;display:flex; padding:100px 0 100px 0; margin:70px 0 70px 0;
-        text-align:center; flex-wrap:wrap; flex-direction: row;
-        justify-content: center; background: #0a95ff; 
-    }
-
-    .ip_trends_box_contents:hover{
-        opacity:0.7;
-        transform: scale(1.1);
-    }
-
-    .ip_trends_box_contents{
-        height:170px; margin:10px; width:200px; border-radius:1rem; border:1px solid #aaa;
-        display:flex; justify-content: center; align-items: center; color:white; cursor:pointer;
-    }
-    
-    @media only screen and (max-width: 500px) {
-        .ip_trends_box_contents{ 
-            height:128px; margin:5px; width:150px; 
-        }
+    .btn_pagination{
+        background:#055da1;
+        border:1px solid #75c3ff;
+        width:15%;
+        color:white;
     }
 </style>
-
 
 <div id="home_front_first">
     <div style="width:100%">
@@ -200,27 +264,26 @@
     </div>
     
     <div  id="front_ip_label" class="w-75">
-        <b>Intellectual Property System</b>
+        <b>FNRI Intellectual Property System (FNRI-IPS)</b>
     </div>
 </div>
 
-<div id="home_about" class="mt-5 mb-5 text-justify"  >
-    <div id="home_paragraphs">
+<div id="home_about" class="text-justify">
+    <div id="home_paragraphs" class="mt-5 mb-5">
         <h2 class="text-center mb-5"><b  style="color:#0892fd">About</b></h2>
         <p style="text-indent: 20%;">
             In line with the Republic Act No. 8293 or the “Intellectual Property Code” of the Philippines, the DOST-FNRI recognizes that an effective intellectual property system is vital to the development of domestic and creative activity, facilitates transfer of technology, and attracts investments.
         </p>
         <p style="text-indent: 20%;">
-            The DOST-FNRI, throught its scientists, inventors and authors, acknowledges its exclusive rights to its intellectual property and creations.
+            The DOST-FNRI, through its scientists, inventors and authors, acknowledges its exclusive rights to its intellectual property and creations.
         </p>
         <p style="text-indent: 20%;">
-            The online DOST-FNRI Intellectual Propety (IP) Database is an in-house tool that serves as an internal depository of IP data and documents used to manage, monitor and evaluate Ips filed by DOST-FNRI inventors or authors.
+            The online DOST-FNRI Intellectual Propety (IP) Database is an in-house tool that serves as an internal depository of IP data and documents used to manage, monitor and evaluate IPs filed by DOST-FNRI inventors or authors.
         </p>
         <p style="text-indent: 20%;">
             Database provides internal access to DOST-FNRI inventors or authors in monitoring the status of their IP applications (e.g. patent, utility model, copyright, trademark). Further, the database allows the generation of IP trends and gives links to downloadable IP application forms and checklists.
         </p>
     </div>
-    
 </div>
 
 <div id="search_result_box" >
@@ -230,8 +293,8 @@
         </div>
         <div class="w-75" style="margin:auto; font-size:15px; box-shadow:2px 2px 5px #444;">
             <div id= "search_box" class="row" >
-                <input class=" form-control h-100" type="text" id="search_chars_bar" style="width:80%"/>
-                <div id="search_bar_button" class="" style="background:#0892fd; cursor:pointer; width:20%;box-shadow:2px 2px 3px #0004; display:flex;justify-content: center;align-items: center;" >
+                <input class=" form-control h-100" type="text" id="search_chars_bar" placeholder="Search word you remember" style="width:80%"/>
+                <div id="search_bar_button" class="" style="color:#fff; background:#0892fd; cursor:pointer; width:20%;box-shadow:2px 2px 3px #0004; display:flex;justify-content: center;align-items: center;" >
                     <i class="fas fa-search"></i>   
                     <span id="label_search"> Search </span> 
                 </div>
@@ -241,15 +304,23 @@
 
     <div style="width:90%; margin:0 auto" id="result_main_box">
         <div class="row"> 
-            <div class="col-lg-3 m-0 p-0" style="box-shadow:1px 0px 5px #555; min-height: 200px; border-radius:0.5rem">
-                <h5 class="p-2" style="width:100%; background:#adf; text-align:center">Search By</h5>
-                <div class="row m-0 p-2 " style="font-size:12px;">
-                    
+            <div class="col-lg-3 m-0 p-0" style="box-shadow:1px 0px 5px #; min-height: 200px; border-radius:0.5rem">
+                <h5 class="p-2" style="width:100%; background:#0892fd; color:white; text-align:center">Search By</h5>
+                <div class="row m-0" style="font-size:12px;">
+                    <div class="col-lg-12 p-0 mt-2" style="display:flex; align-items: stretch; flex-wrap: wrap; flex-direction: row;">
+                        {{-- <input class=" mt-2 select-by-checkboxes" style="transform: scale(2); width:15%" type=checkbox> --}}
+                        <label class="" style="width:100%; text-align:center">Year</label>
+                        <label class="text-right" style="width:15%">From: </label>
+                        <input id="search_yearfrom" onchange="$('#search_bar_button').trigger('click')" style="width:30%; " type="number" min='1987' value='1987'/>
+                        <label class="text-right"style="width:10%;" >To:</label>
+                        <input id="search_yearto" onchange="$('#search_bar_button').trigger('click')" style="width:30%" type="number" min='1987' value='2022'/>
+                    </div>
+
                     <div class="col-lg-12 p-0 mt-2" style="display:flex">
                         {{-- <input class=" mt-2 select-by-checkboxes" style="transform: scale(2); width:15%; " type=checkbox> --}}
                         <label class="" style="width:40%">Ip Type</label>
-                        <select class=" p-2" name="" id="" style="width:60%">
-                            <option value="-1" selected disabled>Select IP</option>
+                        <select id= "ip_select" onchange="$('#search_bar_button').trigger('click')" class=" p-2" name="" id="" style="width:60%">
+                            <option value='' selected >All</option>
                             <option value="1">Patent</option>
                             <option value="2">Utility Model</option>
                             <option value="3">Trademark</option>
@@ -257,20 +328,11 @@
                         </select>
                     </div>
 
-                    <div class="col-lg-12 p-0 mt-2" style="display:flex; align-items: stretch; flex-wrap: wrap; flex-direction: row;">
-                        {{-- <input class=" mt-2 select-by-checkboxes" style="transform: scale(2); width:15%" type=checkbox> --}}
-                        <label class="" style="width:25%">Date</label>
-                        <label class="text-right" style="width:15%">From: </label>
-                        <input style="width:60%; " type="date" />
-                        <label class="text-right"style="width:40%;" >To:</label>
-                        <input style="width:60%" type="date" />
-                    </div>
-
-                    <div class="col-lg-12 p-0 mt-2" style="display:flex">
+                    <div class="col-lg-12 p-0 mt-2 mb-2" style="display:flex">
                         {{-- <input class=" mt-2 select-by-checkboxes" style="transform: scale(2); width:15%; " type=checkbox> --}}
                         <label class="" style="width:40%">Status</label>
-                        <select class=" p-2" name="" id="" style="width:60%">
-                            <option value="-1" selected disabled>Select Status</option>
+                        <select id="status_select" onchange="$('#search_bar_button').trigger('click')" class=" p-2" name="" id="" style="width:60%">
+                            <option value="" selected >All</option>
                             <option value="Approved">Approved</option>
                             <option value="Granted">Granted</option>
                             <option value="Withdrawn">Withdrawn</option>
@@ -278,21 +340,99 @@
                             <option value="On process">On process</option>
                         </select>
                     </div>
-                    <div class="text-center w-100 mt-3"> <button class="btn-success w-75">Search <i class="fas fa-search"></i>   </button></div>
+                    {{-- <div class="text-center w-100 mt-3"> <button class="btn-success w-75">Refresh <i class="fas fa-search"></i>   </button></div> --}}
                 
                 </div>
             </div>
-            <div class="col-lg-9">
-                <div class="row" style="box-shadow:1px 0px 5px #555; min-height: 200px; border-radius:0.5rem">
+            <div class="offset-lg-1 col-lg-8" >
+                <div class="row" style="box-shadow:1px 0px 5px #; min-height: 200px; border-radius:0.5rem">
                     
-                    <h3 class="p-1" style="width:100%; background:#adf; text-align:center">Result</h3>
-                    <div id="search_param_box" class="col-lg-12" style="border-bottom:1px ridge #0003">
+                    <h3 class="p-1" style="width:100%; background:#0892fd; color:white;  text-align:center">Result</h3>
+                    {{-- <div id="search_param_box" class="col-lg-12" style="border-bottom:1px ridge #0003">
                         <button> none x</button>
+                    </div> --}}
+                    <div class="col-lg-12">
+                        <div class="mb-2" style="display:flex; align-items: flex-end; justify-content: space-between;  font-size:12px; background:#ddd; justify-content: space-around; flex-wrap: wrap; color:#259; ">
+                            <div style="width:170px;">
+                                <button type="button" onclick="displayRowsOfIpToTable(rows_of_ip, -1)" value='-1' class='btn_pagination'  style="border-radius: .5rem 0 0 0 ; ">
+                                    <i class="fas fa-chevron-left fa-lg"></i>
+                                </button>
+                                <label type="button" class="m-0">Page 
+                                    <b><span id='current_page'>1</span></b> of
+                                    <b><span id='page_total'>1</span></b>
+                                </label>
+                                <button type="button" onclick="displayRowsOfIpToTable(rows_of_ip, 1)" value ='1' class='btn_pagination' style="border-radius: 0 .5rem 0 0 ;">
+                                    <i class="fas fa-chevron-right fa-lg"></i> 
+                                </button>
+                                <input type="text" onchange="displayRowsOfIpToTable(rows_of_ip)" style="width:25px; border:none" id='page_rows_cnt' value='15'/>
+                            </div>
+                            <div style="width:150px; ">
+                                <label class="m-0" style="border-radius:.5rem ; width:;">View By</label>
+                                <button type="button " class="view-button" value='1'><i class="fas fa-table"></i></button>
+                                <button type="button " class="view-button" value='2'><i class="fas fa-square"></i></button>
+                                <button type="button " class="view-button" value='3'><i class="fas fa-prescription-bottle"></i></button>
+                            </div>
+
+                            <div id= "quick_search_sort_box" style="width:280px; display:">
+                                <label type="button" style="border-radius:.5rem ; width:;">Sort By</label>
+                                <select id="tbl_search_sorter" class=" p-2" name="" id="" style="width:60%">
+                                    <option value="type_id">IP Type</option>
+                                    <option value="doc_code">Document Code</option>
+                                    <option value="date_filed">Date Filed</option>
+                                    <option value="name">Title</option>
+                                    <option value="reg_no">Application No.</option>
+                                    <option value="author_r_inventor">Inventors/ Authors</option>
+                                    <option value="status">Status</option>
+                                    <option value="date_approved">Date Approved/ Granted</option>
+                                </select>
+                                <button type="button " onclick="$('#tbl_search_sorter').trigger('change', [{}, true]);" 
+                                style="border-radius:.5rem ;color:#259; "><i class="fas fa-sort-alpha-down"></i></button>
+                                <button type="button " onclick="$('#tbl_search_sorter').trigger('change', [{}, false]);"  
+                                style="border-radius:.5rem ;color:#259; "><i class="fas fa-sort-alpha-up"></i></button>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="col-lg-12">
-                        <div class="row" id="ip_search_result_box">
+                    <div class="col-lg-12" style="overflow-y:auto; width:100%; height:500px;">
+                        <div class = "view-type" value="1" style="width:98%; background:#ffffff; margin:auto; padding:0; box-shadow:1px 1px 5px #0005;">
+                            <table id="tbl_detailed" class="table table-striped table-bordered table-sm" cellspacing="0" style="background:rgb(255, 255, 255)">
+                                <thead>
+                                    <tr>
+                                        <th>No.</th>
+                                        <th>IP Type</th>
+                                        <th>Document Code</th>
+                                        <th>Date Filed</th>
+                                        <th style="min-width:150px;">Title</th>
+                                        <th>Application No.</th>
+                                        <th style="min-width:150px;">Inventors/ Authors</th>
+                                        <th>Status</th>
+                                        <th>Date Approved/ Granted</th>
+                                        <!-- <th>Date of Expiration</th> -->
+                                    </tr>
+                               </thead>
+                                <tbody id="ip_tbl_body">
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="view-type" value="2" id="ip_search_result_box">
                             <div class="p-3" style="width:100%; font-size:55px; color:#0006; text-align:center">No Results Yet</div>
+                        </div>
+
+                        <div class = "view-type" value="3" style="max-height:500px; background:rgb(255, 255, 255); width:90%; margin:auto; display:none">
+                            <table id="tbl_title" class="table table-striped table-bordered table-sm" cellspacing="0" >
+                                <thead id="ip_tbl_head2">
+                                    <tr>
+                                        <th>No.</th>
+                                        <th>View</th>
+                                        <th>Title</th>
+                                    </tr>
+                               </thead>
+                                <tbody id="ip_tbl_body2">
+                                   
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -307,7 +447,7 @@
             <h2 id="all_count" style=" font-weight:bolder; font-family:Arial Black">0</h2><br>
             <h6 style="opacity:0.4; font-weight:bolder; font-family:Arial Black">All</h6>
         </label>  
-        <i class="fa fa-lightbulb" style="position:absolute;;   font-size:80px; z-index:3; opacity:0.1"></i>
+        <i class="fa fa-border-all" style="position:absolute;;   font-size:80px; z-index:3; opacity:0.1"></i>
     </div>
     <div class="ip_trends_box_contents" onclick="redirectToDashoard(1)" style="background:rgb(37, 97, 162); position:relative" >
         <label style="position:absolute; z-index:100; ">
@@ -496,74 +636,180 @@
 
 </div>
 
+@include("ipviewinmodal")
 <script>
-    $("#home_front_first").css("height", window.innerHeight);
-    // $("#home_about").css("height", window.innerHeight);
-    // $("#search_result_box").css("height", window.innerHeight);
-    $("#contact_box").css("margin-top", window.innerHeight*.3 );
-    $("#contact_box").css("margin-bottom", window.innerHeight*.3 );
-    // $("#checklist_and_forms").css("height", window.innerHeight);
-    // $("#graphs_charts_box").css("height", window.innerHeight);
-
-    $("#search_bar_button").click( function (e) {
-        $('html,body').animate({scrollTop: $("#result_main_box").offset().top}, 1000); // automatically scroll to location
-        let ip_type = ["Patent", "Trademark", "Utility Model", "Copyright"];
-        console.log("Came from search bar");
-        let search_word = $("#search_chars_bar").val();
-            $.ajax({
-                url : "home/search_word",
-                method:"POST",
-                data:  'search_word=' +search_word,
-                success: function (data) {
-                    let rows = JSON.parse(data);
-                    console.log(data+ " - success");
-                    $("#ip_search_result_box").html("");
-                    for(x=0; x<rows.length; x++){
-                        $("#ip_search_result_box").append(
-                            "<div class='col-lg-4 ip_result_contents'>"+
-                            "<div class='m-1 p-2 ip-cell' onclick='viewIP("+JSON.stringify(rows[x])+")'>"+
-                        
-                            "<div class='row'>"+
-                                "<p class='col-lg-5'><b>Name:</b></p>"+
-                                " <p class='col-lg-7 '>"+rows[x].name+"</p>"+
-                            "</div>"+
-                            "<div class='row'>"+
-                                "<p class='col-sm-5'><b>IP Type:</b></p>"+
-                                "<p class='col-sm-7 text-truncate'>"+ip_type[rows[x].type_id-1]+"</p>"+
-                            "</div>"+
-                            "<div class='row'>"+
-                                "<p class='col-sm-5'><b>Date Filed:</b></p>"+
-                                "<p class='col-sm-7'>"+rows[x].date_filed+"</p>"+
-                            "</div>"+
-                            "<div class='row'>"+
-                                "<p class='col-sm-5'><b>Status:</b></p>"+
-                                "<p class='col-sm-7'>"+rows[x].status+"</p>"+
-                            "</div>"+
-                            "<div class='row'>"+
-                                "<p class='col-sm-5'><b>Reg. No:</b></p>"+
-                                "<p class='col-sm-7 '>"+rows[x].reg_no+"</p>"+
-                            "</div>"+
-                        "</div></div>");
-                    }
-                    console.log($("#ip_search_result_box").html());
-                },
-                error: function (data, textStatus, errorThrown) {
-                    console.log(data.message + "error");
+    console.log("Sample- {{ session()->get('name') }}");
+    let rows_of_ip;
+    let ip_type; 
+    $( document ).ready(function() {
+        setInitialsForHome();
+    });
+    
+    $("#tbl_search_sorter").change("Hi Sjay", function(e, json, order){ 
+        // alert(e.data + " - show - " + order);
+        // console.log(this.value + JSON.stringify(rows_of_ip));
+        // alert(this.value);
+        let asc;
+        order==undefined?asc = true:asc=order;
+        //sort algorithm
+        for(x=0; x<rows_of_ip.length; x++){
+            for(y=x+1; y<rows_of_ip.length; y++){
+                if(rows_of_ip[x][this.value] > rows_of_ip[y][this.value] && asc == true){ // for asc
+                    let temp = rows_of_ip[y];
+                    rows_of_ip[y]= rows_of_ip[x];
+                    rows_of_ip[x] = temp;
+                } else if(rows_of_ip[x][this.value] < rows_of_ip[y][this.value] && asc == false){ // for desc
+                    let temp = rows_of_ip[y];
+                    rows_of_ip[y]= rows_of_ip[x];
+                    rows_of_ip[x] = temp;
                 }
-            });
+            }
+            // rows_of_ip[x].sort(function(a, b){return a[this.value] - b[this.value]});
+        }
+            displayRowsOfIpToTable(rows_of_ip);
+    });
+    
+    $(".view-button").click(function(){
+        let view_no = $(this).val()-1;
+        (view_no != 2)?$("#quick_search_sort_box").show():$("#quick_search_sort_box").hide();
+        console.log( view_no + ": " + $(this).index()  + " - " + $(".view-type").eq(view_no).index());
+        $(".view-button-active").removeClass("view-button-active").addClass('view-button');
+        $(this).addClass("view-button-active").removeClass('view-button'); // this is for effects
+
+        $(".view-type").css('display', 'none');
+        view_no != 1?$(".view-type").eq(view_no).css("display", "table"):$(".view-type").eq(view_no).css("display", "flex");
+    });
+
+    $("#search_bar_button").click( function (e, json, val) {
+        // alert('search' + (val!=undefined));
+        $('html,body').animate({scrollTop: $("#result_main_box").offset().top}, 1000); // automatically scroll to location
+        console.log("Came from search bar");
+        let search_word = "%"+$("#search_chars_bar").val()+ "%";
+        let ip_type_select = $("#ip_select").val();
+        let status = $("#status_select").val();
+        let yearfrom = $("#search_yearfrom").val();
+        let yearto = $("#search_yearto").val();
+        // let page_current_num = (val!=undefined)?parseInt($("#current_page").text())+val:$("#current_page").text();
+        // $("#current_page").text((page_current_num<=parseInt($("#page_total").text()) && page_current_num>0)?page_current_num:$("#current_page").text());
+        // let page_rows = parseInt($("#page_rows_cnt").val()); //number of rows for each page (limit 0, rows)
+        // let start_row = (parseInt($("#current_page").text())-1) * page_rows; //which row will start (limit start, rows)
+
+        /*display the parameter searches
+        //....arguments.......
+        */
+
+        $.ajax({
+            url : "home/search_word",
+            method:"POST",
+            data:   {
+                        'search_word':search_word, 
+                        'ip_type': ip_type_select, 
+                        'status':status, 
+                        'yearfrom':yearfrom, 
+                        'yearto':yearto,
+                        // 'start_row':start_row,
+                        // 'page_rows':page_rows
+                    },
+            success: function (data) {
+                // console.log(data);
+                rows_of_ip = JSON.parse(data);
+                // console.log(data+ " - success");
+                displayRowsOfIpToTable(rows_of_ip);
+            },
+            error: function (data, textStatus, errorThrown) {
+                console.log(JSON.stringify(data) + "error");
+            }
+        });
     });
 
     $("#search_param_box button").click(function(){
         $(this).remove();
     });
 
-    function viewIP(ip_data){
-    console.log(ip_data);
-    $("#btn_open_viewip").trigger('click');
-    fillIpData(ip_data);
-  }
-</script>
+    function displayRowsOfIpToTable(rows, val){ 
 
+        let page_current_num = (val!=undefined)?parseInt($("#current_page").text())+val:$("#current_page").text();
+        $("#current_page").text((page_current_num<=parseInt($("#page_total").text()) && page_current_num>0)?page_current_num:$("#current_page").text());
+        let page_rows = parseInt($("#page_rows_cnt").val()); //number of rows for each page (limit 0, rows)
+        let start_row = (parseInt($("#current_page").text())-1) * page_rows; //which row will start (limit start, rows)
+        let end_row = start_row+page_rows<rows.length?start_row+page_rows:rows.length; // to precise end rows
+
+        $("#page_total").text(Math.ceil(rows.length/page_rows));
+        console.log($("#page_total").text() + "-hiyah");
+        $("#ip_search_result_box").html("");
+        $("#tbl_detailed tbody").html("");
+        $("#tbl_title tbody").html("");
+        for(x=start_row; x<end_row; x++){
+            $("#ip_search_result_box").append(
+                "<div class='col-lg-4 ip_result_contents'>"+
+                "<div class='m-1 p-2 ip-cell' onclick='viewIP("+JSON.stringify(rows[x])+")'>"+
+            
+                "<div class='row'>"+
+                    "<p class='col-lg-5'><b>Name:</b></p>"+
+                    " <p class='col-lg-7 '>"+rows[x].name+"</p>"+
+                "</div>"+
+                "<div class='row'>"+
+                    "<p class='col-sm-5'><b>IP Type:</b></p>"+
+                    "<p class='col-sm-7 text-truncate'>"+ip_type[rows[x].type_id-1]+"</p>"+
+                "</div>"+
+                "<div class='row'>"+
+                    "<p class='col-sm-5'><b>Date Filed:</b></p>"+
+                    "<p class='col-sm-7'>"+rows[x].date_filed+"</p>"+
+                "</div>"+
+                "<div class='row'>"+
+                    "<p class='col-sm-5'><b>Status:</b></p>"+
+                    "<p class='col-sm-7'>"+rows[x].status.replace('&', '<br>')+"</p>"+
+                "</div>"+
+                "<div class='row'>"+
+                    "<p class='col-sm-5'><b>Reg. No:</b></p>"+
+                    "<p class='col-sm-7 '>"+rows[x].reg_no+"</p>"+
+                "</div>"+
+            "</div></div>");
+
+            //for detailed table
+            $("#tbl_detailed tbody").append("<tr>"+
+                "<td>"+(x+1)+"</td>"+
+                "<td>"+ip_type[rows[x].type_id-1]+"</td>"+
+                "<td>"+rows[x].doc_code+"</td>"+
+                "<td>"+rows[x].date_filed+"</td>"+
+                "<td>"+rows[x].name+"</td>"+
+                "<td>"+rows[x].reg_no+"</td>"+
+                "<td>"+rows[x].author_r_inventor+"</td>"+
+                "<td>"+rows[x].status.replace('&', '<br>')+"</td>"+
+                "<td>"+rows[x].date_approved+"</td>"+
+                // "<td>"+rows[x].+"</td>"+
+            +"</tr>");
+            
+            $("#tbl_title tbody").append("<tr>"+
+                "<td>"+(x+1)+"</td>"+
+                "<td style='width:85px;'><i class='fas fa-eye m-2' onclick='viewIP("+JSON.stringify(rows[x])+")'></i></td>"+
+                "<td>"+rows[x].name+ "</td>"+
+            "</tr>");  
+        }
+        // console.log($("#ip_search_result_box").html());
+    }
+
+    function viewIP(ip_data){
+        console.log(ip_data);
+        $("#btn_open_viewip").trigger('click');
+        fillIpData(ip_data);
+    }
+
+    function setInitialsForHome(){
+            ip_type = ["Patent", "Utility Model",  "Trademark","Copyright"];
+            $( ".view-button" ).first().trigger('click');
+            $("#search_bar_button").trigger('click');
+            $("#home_front_first").css("height", window.innerHeight *.7);
+            // $("#home_about").css("min-height", window.innerHeight);
+            // $("#search_result_box").css("height", window.innerHeight);
+            $("#contact_box").css("margin-top", window.innerHeight*.3 );
+            $("#contact_box").css("margin-bottom", window.innerHeight*.3 );
+            // $("#checklist_and_forms").css("height", window.innerHeight);
+            // $("#graphs_charts_box").css("height", window.innerHeight);
+        }
+
+
+</script>
 
 <script>
     

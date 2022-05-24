@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\Ip;
 use App\Models\tm_dau;
 
@@ -17,6 +18,7 @@ class IpController extends Controller
     }
 
     public function addIP(Request $request){
+
         $ips = new Ip();
         $ips->type_id = $request->type_id;
         $ips->doc_code = $request->doc_code ;
@@ -25,6 +27,7 @@ class IpController extends Controller
         $ips->reg_no = $request->reg_no;
         $ips->author_r_inventor = $request->author_r_inventor;
         $ips->status = $request->status;
+        // $ips->date_approved = null;
         $ips->date_approved = $request->date_approved;
         $ips->project_title = $request->project_title;
         $ips->duration = $request->duration;
@@ -44,10 +47,23 @@ class IpController extends Controller
             $tm_dau->outlet = $request->outlet;
             $tm_dau->outlet_address = $request->outlet_address;
             $tm_dau->pic_n_lbl = $request->pic_n_lbl;
+            $tm_dau->date_3rd_dou = $request->date_3rd_dou;
+            $tm_dau->regno_3rd_dou = $request->regno_3rd_dou;
+            $tm_dau->status_3rd_dou = $request->status_3rd_dou;
+            $tm_dau->date_5th_dou = $request->date_5th_dou;
+            $tm_dau->regno_5th_dou = $request->regno_5th_dou;
+            $tm_dau->status_5th_dou = $request->status_5th_dou;
+            $tm_dau->status_renewal = $request->status_renewal;
             $tm_dau->save();
         }
         return response()->json($ips);
         // return json_encode($request);
+    }
+
+    public function checkRegistry(Request $request){
+        // $reg_sql_string = $request->reg_no != ''?"where reg_no = '$request->reg_no'":"";
+        $is_dup = DB::select("select count(id) as cnt from ips  where reg_no = '$request->reg_no'");
+        return json_encode($is_dup[0]->cnt);
     }
 
     public function searchInIpdata(Request $request){
@@ -72,26 +88,76 @@ class IpController extends Controller
     }
 
     public function selectIpByType(Request $request){
-        if($request->ip_type == -1){
-    //         $leagues = DB::table('leagues')
-    // ->select('league_name')
-    // ->join('countries', 'countries.country_id', '=', 'leagues.country_id')
-    // ->where('countries.country_name', $country)
-    // ->get();
-            $results = tm_dau::select('*')
-            ->join('ips', 'ips.reg_no', '=', 'tm_dau.reg_no')
-            ->limit(30)->offset(0)->distinct()->get();
+        $search_word = $request->search_word;
+        if($request->ip_type == '-1'){
+            $results = tm_dau::
+            join('ips', 'ips.reg_no', '=', 'tm_dau.reg_no')
+            ->where(function ($query) use ($search_word) {
+                $query->where('name' , 'like',  '%'.$search_word  .'%' )
+            ->orWhere('doc_code' , 'like',  '%' .  $search_word . '%' )
+            ->orWhere('project_title' , 'like',  '%' .  $search_word . '%' )
+            ->orWhere('date_filed' , 'like',  '%' .  $search_word . '%' )
+            ->orWhere('funding_source' , 'like',  '%' .  $search_word . '%' )
+            ->orWhere('ips.reg_no' , 'like',  '%' .  $search_word . '%' )
+            ->orWhere('author_r_inventor' , 'like',  '%' .  $search_word . '%' )
+            ->orWhere('status' , 'like',  '%' .  $search_word . '%' )
+            ->orWhere('date_approved' , 'like',  '%' .  $search_word . '%' )
+            ->orWhere('duration' , 'like',  '%' .  $search_word . '%' )
+            ->orWhere('project_cost' , 'like',  '%' .  $search_word . '%' )
+            ->orWhere('funding_source' , 'like',  '%' .  $search_word . '%' )
+            ->orWhere('income_gross' , 'like',  '%' .  $search_word . '%' );
+            })
+            // ->limit($request->page_rows)->offset($request->start_row)
+            ->distinct()->get();
             // return response()->json($results);
+            $class_cnt = DB::select("select count(id) as cnt from ips where type_id = '3' and (ips.name Like '%$request->search_word%' OR doc_code Like '%$request->search_word%' OR project_title Like '%$request->search_word%' OR date_filed Like '%$request->search_word%' OR funding_source Like '%$request->search_word%' OR reg_no Like '%$request->search_word%' OR author_r_inventor Like '%$request->search_word%' OR ips.status Like '%$request->search_word%' OR date_approved Like '%$request->search_word%' OR duration Like '%$request->search_word%' OR project_cost Like '%$request->search_word%'OR funding_source Like '%$request->search_word%' OR income_gross Like '%$request->search_word%') ");
+            $results[0]->setAttribute('ips_count',$class_cnt[0]->cnt);
             return json_encode($results);
-        }else if($request->ip_type == 0){
-            $results = IP::orderBy('date_filed','ASC')->limit(30)->offset(0)->get();
-            // return response()->json($results);
-            return json_encode($results);
-        }else{
-            $results = Ip::where('type_id', $request->ip_type)->orderBy('date_filed','ASC')
-            ->limit(50)->offset(0)
+        }else if($request->ip_type == 0){ // get all ips regardless of its types
+            $results = IP::where(function ($query) use ($search_word) {
+                $query->where('name' , 'like',  '%'.$search_word  .'%' )
+            ->orWhere('doc_code' , 'like',  '%' .  $search_word . '%' )
+            ->orWhere('project_title' , 'like',  '%' .  $search_word . '%' )
+            ->orWhere('date_filed' , 'like',  '%' .  $search_word . '%' )
+            ->orWhere('funding_source' , 'like',  '%' .  $search_word . '%' )
+            ->orWhere('reg_no' , 'like',  '%' .  $search_word . '%' )
+            ->orWhere('author_r_inventor' , 'like',  '%' .  $search_word . '%' )
+            ->orWhere('status' , 'like',  '%' .  $search_word . '%' )
+            ->orWhere('date_approved' , 'like',  '%' .  $search_word . '%' )
+            ->orWhere('duration' , 'like',  '%' .  $search_word . '%' )
+            ->orWhere('project_cost' , 'like',  '%' .  $search_word . '%' )
+            ->orWhere('funding_source' , 'like',  '%' .  $search_word . '%' )
+            ->orWhere('income_gross' , 'like',  '%' .  $search_word . '%' );
+            })->orderBy('date_filed','ASC')
+            // ->limit($request->page_rows)->offset($request->start_row)
             ->get();
             // return response()->json($results);
+            $class_cnt = DB::select("select count(id) as cnt from ips where (ips.name Like '%$request->search_word%' OR doc_code Like '%$request->search_word%' OR project_title Like '%$request->search_word%' OR date_filed Like '%$request->search_word%' OR funding_source Like '%$request->search_word%' OR reg_no Like '%$request->search_word%' OR author_r_inventor Like '%$request->search_word%' OR ips.status Like '%$request->search_word%' OR date_approved Like '%$request->search_word%' OR duration Like '%$request->search_word%' OR project_cost Like '%$request->search_word%'OR funding_source Like '%$request->search_word%' OR income_gross Like '%$request->search_word%')");
+            $results[0]->setAttribute('ips_count',$class_cnt[0]->cnt);
+            return json_encode($results);
+        }else{
+            $results = Ip::where(function ($query) use ($search_word) {
+                $query->where('name' , 'like',  '%'.$search_word  .'%' )
+            ->orWhere('doc_code' , 'like',  '%' .  $search_word . '%' )
+            ->orWhere('project_title' , 'like',  '%' .  $search_word . '%' )
+            ->orWhere('date_filed' , 'like',  '%' .  $search_word . '%' )
+            ->orWhere('funding_source' , 'like',  '%' .  $search_word . '%' )
+            ->orWhere('reg_no' , 'like',  '%' .  $search_word . '%' )
+            ->orWhere('author_r_inventor' , 'like',  '%' .  $search_word . '%' )
+            ->orWhere('status' , 'like',  '%' .  $search_word . '%' )
+            ->orWhere('date_approved' , 'like',  '%' .  $search_word . '%' )
+            ->orWhere('duration' , 'like',  '%' .  $search_word . '%' )
+            ->orWhere('project_cost' , 'like',  '%' .  $search_word . '%' )
+            ->orWhere('funding_source' , 'like',  '%' .  $search_word . '%' )
+            ->orWhere('income_gross' , 'like',  '%' .  $search_word . '%' );
+            })
+            ->where('type_id', $request->ip_type)
+            // ->limit($request->page_rows)->offset($request->start_row)
+            ->orderBy('date_filed','ASC')
+            ->get();
+            // return response()->json($results);
+            $class_cnt = DB::select("select count(id) as cnt from ips where type_id = $request->ip_type and (ips.name Like '%$request->search_word%' OR doc_code Like '%$request->search_word%' OR project_title Like '%$request->search_word%' OR date_filed Like '%$request->search_word%' OR funding_source Like '%$request->search_word%' OR reg_no Like '%$request->search_word%' OR author_r_inventor Like '%$request->search_word%' OR ips.status Like '%$request->search_word%' OR date_approved Like '%$request->search_word%' OR duration Like '%$request->search_word%' OR project_cost Like '%$request->search_word%'OR funding_source Like '%$request->search_word%' OR income_gross Like '%$request->search_word%')");
+            $results[0]->setAttribute('ips_count',$class_cnt[0]->cnt);
             return json_encode($results);
         }
     }
