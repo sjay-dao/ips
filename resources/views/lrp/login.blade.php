@@ -7,6 +7,7 @@
 <style>
     #login_box{
         height:300px;
+        width:500px;
         box-shadow:1px 1px 8px rgb(0, 153, 255, 0.5);
         margin-top:200px; 
         text-align:center;
@@ -14,7 +15,7 @@
  </style>
  
  <div style="width:100%; height:100%;">
-     <section id="login_box" class="offset-lg-4 col-lg-4 p-4">
+     <section id="login_box" class="col-lg-4 p-4">
          <div class="row form-group" style="border:px solid black;">
             <label class="col-lg-12 " for="">Username</label>
             <input class="offset-lg-2 col-lg-8 form-control" type="text" id="login_user" />
